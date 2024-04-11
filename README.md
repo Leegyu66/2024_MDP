@@ -1,5 +1,5 @@
 # 2024_MDP
-## speech & draw
+- speech & draw
 
 ## 🖥 작품 소개
 - 4~6살 아이를 위한 발음&그림 교육기기
