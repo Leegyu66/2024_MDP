@@ -11,6 +11,8 @@
 
 ## 📋 데이터베이스
 
+  ![dbb](https://github.com/Leegyu66/2024_MDP/assets/145430337/045819c3-cf0d-4c3e-9898-2b2125867aed)
+
   
 
 
