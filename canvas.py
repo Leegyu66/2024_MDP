@@ -4,6 +4,7 @@ import cv2
 import os
 
 Photo = PhotoImage(file="animal/lion.jpg")
+photoman = "ff"
 
 
 # 그림판을 위한 클래스
