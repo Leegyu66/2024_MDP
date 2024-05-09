@@ -3,7 +3,7 @@ from tkinter import PhotoImage
 import cv2
 import os
 
-Photo = PhotoImage(file="../animal/lion.jpg")
+Photo = PhotoImage(file="animal/lion.jpg")
 
 
 # 그림판을 위한 클래스
