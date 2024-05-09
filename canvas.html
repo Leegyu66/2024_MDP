@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      canvas {
+        background: #eee;
+      }
+      /* 2. 컬러버튼 만들기 */
+      .color-btn {
+        width: 30px;
+        height: 30px;
+        border: 0;
+        border-radius: 50%;
+      }
+      .color-btn[data-color='black'] {background-color: black;}
+      .color-btn[data-color='red'] {background-color: red;}
+      .color-btn[data-color='green'] {background-color: green;}
+      .color-btn[data-color='blue'] {background-color: blue;}
+      .color-btn[data-color='purple'] {background-color: purple;}
+    </style>
+  </head>
+
+  <body>
+    <h1>Paint Brush</h1>
+    <canvas class="canvas" width="600" height="400"></canvas>
+    <!-- 1. 버튼형 색깔 만들기 -->
+    <div class="btn">
+      <button class="color-btn" data-color="black"></button>
+      <button class="color-btn" data-color="red"></button>
+      <button class="color-btn" data-color="green"></button>
+      <button class="color-btn" data-color="blue"></button>
+      <button class="color-btn" data-color="purple"></button>
+    </div>
+
+    <script>
+      const canvas = document.querySelector('.canvas');
+      const ctx = canvas.getContext('2d');
+      let drawing;
+      // 3.3 색 변수, 기본 검은색
+      let colorSelector = 'black';
+      // 3. 버튼 연결하기
+      const btn = document.querySelector('.btn');
+
+      function downDraw() { // 누르고 움직이면 그리기 (움직임 true)
+        drawing = true;
+      }
+
+      function upDraw() { // 떼고 움직이면 그리기 멈춤 (움직임 false)
+        drawing = false;
+      }
+      
+      function moveDraw(event) {    
+        if (!drawing) return; // drawing이 false면 멈추기   
+
+        const dx = event.clientX - ctx.canvas.offsetLeft;
+        const dy = event.clientY - ctx.canvas.offsetTop; 
+        // console.log(event);   
+        
+        ctx.beginPath( );
+        ctx.arc(dx, dy, 10, 0, Math.PI*2, false);
+        ctx.fill();        
+      }
+      
+      // 3.2 btnControl 함수      
+      function btnControl(event) { 
+        colorSelector = event.target.getAttribute('data-color');
+        // 3.4 btnControl 작동, click하면 색을 바꾸어 줌
+        ctx.fillStyle = colorSelector;
+      }
+            
+      canvas.addEventListener('mousedown', downDraw);
+      canvas.addEventListener('mousemove', moveDraw);
+      canvas.addEventListener('mouseup', upDraw);
+
+      // 3.1 버튼 클릭이벤트
+      btn.addEventListener('click', btnControl);
+       
+    </script>
+  </body>
+</html>
