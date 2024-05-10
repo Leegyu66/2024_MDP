@@ -1,29 +1,33 @@
-import threading
-import time
+import tkinter as tk
+from PIL import Image, ImageTk, ImageDraw
 
-# 스레드 1: 카운트 다운
-def countdown(name, count):
-    while count > 0:
-        print(f"{name} - Count: {count}")
-        count -= 1
-        time.sleep(1)  # 1초 대기
+# 원형 이미지를 만드는 함수
+def create_round_image(diameter, fill_color, outline_color, outline_width):
+    img = Image.new("RGBA", (diameter, diameter), (255, 255, 255, 0))
+    draw = ImageDraw.Draw(img)
+    draw.ellipse((0, 0, diameter, diameter), fill=fill_color, outline=outline_color, width=outline_width)
+    return img
 
-# 스레드 2: 간단한 작업 반복
-def simple_task(name):
-    for i in range(5):
-        print(f"{name} - Task: {i}")
-        time.sleep(0.5)  # 0.5초 대기
+# tkinter 루트 윈도우 생성
+root = tk.Tk()
 
-# 두 스레드 생성
-t1 = threading.Thread(target=countdown, args=("Thread 1", 5))
-t2 = threading.Thread(target=simple_task, args=("Thread 2",))
+# 원형 이미지를 생성
+diameter = 100
+fill_color = "lightblue"
+outline_color = "blue"
+outline_width = 2
 
-# 스레드 시작
-t1.start()
-t2.start()
+round_image = create_round_image(diameter, fill_color, outline_color, outline_width)
 
-# 메인 스레드가 다른 스레드가 끝날 때까지 기다리도록 함
-t1.join()
-t2.join()
+# PhotoImage로 변환
+round_image_tk = ImageTk.PhotoImage(round_image)
 
-print("Both threads have finished.")
+# Label에 원형 이미지 추가
+label = tk.Label(root, image=round_image_tk)
+label.pack(pady=20)
+
+# 또는 Button에 원형 이미지 추가
+button = tk.Button(root, image=round_image_tk)
+button.pack(pady=20)
+
+root.mainloop()
