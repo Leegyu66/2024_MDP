@@ -19,6 +19,7 @@
 
 ## 생성 이미지
 ![Image](https://github.com/user-attachments/assets/d8c0bce2-5e20-487b-ae0c-981c90b5376b)
+![Image](https://github.com/user-attachments/assets/780a9190-94b9-4d5d-a746-4b30a914830d)
 
 ## 🕰 개발 기간
 2024.03.05. ~ 2024. 09.27.
